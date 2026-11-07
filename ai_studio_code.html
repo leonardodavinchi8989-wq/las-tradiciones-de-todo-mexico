@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>México Vivo | Enciclopedia Viva de Tradiciones</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --rosa: #E4007C;
+            --cempasuchil: #F58220;
+            --oro: #FFD166;
+            --verde-agave: #0D5F48;
+            --azul-obsidiana: #090C12;
+            --azul-tarjeta: #121724;
+            --azul-modal: #161D2E;
+            --blanco: #F8FAFC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--azul-obsidiana);
+            color: var(--blanco);
+            overflow-x: hidden;
+        }
+
+        /* CURSOR LUMINOSO */
+        @media (hover: hover) and (pointer: fine) {
+            .cursor-glow {
+                position: fixed;
+                width: 320px;
+                height: 320px;
+                background: radial-gradient(circle, rgba(228, 0, 124, 0.16) 0%, rgba(245, 130, 32, 0.05) 50%, transparent 70%);
+                border-radius: 50%;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                z-index: 9999;
+                transition: transform 0.08s ease-out;
+            }
+            .cursor-dot {
+                position: fixed;
+                width: 8px;
+                height: 8px;
+                background-color: var(--cempasuchil);
+                border-radius: 50%;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                z-index: 10000;
+                box-shadow: 0 0 10px var(--cempasuchil);
+            }
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(9, 12, 18, 0.9);
+            backdrop-filter: blur(16px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(245, 130, 32, 0.2);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: var(--rosa);
+            text-shadow: 0 0 12px rgba(228, 0, 124, 0.6);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #d1d5db;
+            font-size: 0.95rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--oro);
+        }
+
+        .sound-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--blanco);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sound-btn:hover {
+            background: var(--rosa);
+            border-color: var(--rosa);
+            box-shadow: 0 0 15px rgba(228, 0, 124, 0.5);
+        }
+
+        /* HERO & CANVAS */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #182236 0%, var(--azul-obsidiana) 85%);
+        }
+
+        #petals-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 920px;
+        }
+
+        .badge-flotante {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(228, 0, 124, 0.15);
+            border: 1px solid var(--rosa);
+            color: var(--rosa);
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FF6B6B, var(--cempasuchil), var(--oro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 25px rgba(245, 130, 32, 0.3));
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #cbd5e1;
+            max-width: 760px;
+            margin: 0 auto 35px;
+            line-height: 1.8;
+        }
+
+        .btn-interactivo {
+            padding: 16px 38px;
+            background: linear-gradient(45deg, var(--rosa), var(--cempasuchil));
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(228, 0, 124, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-interactivo:hover {
+            transform: scale(1.06) translateY(-4px);
+            box-shadow: 0 15px 35px rgba(245, 130, 32, 0.6);
+        }
+
+        /* PAPEL PICADO ANIMADO */
+        .papel-picado-wrapper {
+            width: 100%;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+            margin-top: -30px;
+        }
+
+        .papel-item {
+            flex: 1;
+            min-width: 60px;
+            height: 45px;
+            transform-origin: top center;
+            animation: wave 3s ease-in-out infinite alternate;
+        }
+
+        .papel-item:nth-child(even) { animation-duration: 2.2s; animation-delay: 0.3s; }
+        .papel-item:nth-child(3n) { animation-duration: 3.4s; animation-delay: 0.6s; }
+
+        @keyframes wave {
+            0% { transform: rotate(0deg) skewX(0deg); }
+            100% { transform: rotate(4deg) skewX(5deg); }
+        }
+
+        /* SECCIONES Y ENTRADA SCROLL */
+        section {
+            padding: 90px 8%;
+            position: relative;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: var(--oro);
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #94a3b8;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* FILTROS */
+        .filtros-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filtro-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filtro-btn.active, .filtro-btn:hover {
+            background: var(--rosa);
+            border-color: var(--rosa);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(228, 0, 124, 0.4);
+        }
+
+        /* REJILLA 3D */
+        .tradiciones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 35px;
+            perspective: 1200px;
+        }
+
+        .card-tilt {
+            background: var(--azul-tarjeta);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            transition: border-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+            transform-style: preserve-3d;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tilt:hover {
+            border-color: var(--cempasuchil);
+        }
+
+        .card-img-box {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .card-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card-tilt:hover .card-img-box img {
+            transform: scale(1.1);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(13, 95, 72, 0.9);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            backdrop-filter: blur(5px);
+        }
+
+        .card-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            transform: translateZ(25px);
+        }
+
+        .card-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.45rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .card-info p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 22px;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            background: linear-gradient(90deg, rgba(245, 130, 32, 0.15), rgba(228, 0, 124, 0.15));
+            border: 1px solid var(--cempasuchil);
+            color: var(--oro);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+
+        .card-btn:hover {
+            background: var(--cempasuchil);
+            color: #fff;
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(245, 130, 32, 0.4);
+        }
+
+        /* CONTADORES ANIMADOS */
+        .stats-wrapper {
+            background: linear-gradient(135deg, rgba(19, 24, 38, 0.9), rgba(10, 13, 20, 0.95));
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-top: 60px;
+            border: 1px solid rgba(228, 0, 124, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .counter-value {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--cempasuchil);
+            text-shadow: 0 0 20px rgba(245, 130, 32, 0.3);
+            margin-bottom: 8px;
+        }
+
+        .stat-box p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        /* MODAL EXPANDIDO DE INVESTIGACIÓN PROFUNDA */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(12px);
+            z-index: 20000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-card {
+            background: var(--azul-modal);
+            border: 1px solid var(--cempasuchil);
+            border-radius: 24px;
+            max-width: 850px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            padding: 30px 35px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .modal-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--oro);
+            margin-bottom: 8px;
+            padding-right: 40px;
+        }
+
+        .modal-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .m-badge {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .m-badge-unesco { background: var(--verde-agave); color: #fff; }
+        .m-badge-region { background: rgba(228, 0, 124, 0.2); color: var(--rosa); border: 1px solid var(--rosa); }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(255,255,255,0.08);
+            border: none;
+            color: #fff;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            background: var(--rosa);
+            transform: rotate(90deg);
+        }
+
+        /* PESTAÑAS DENTRO DEL MODAL */
+        .modal-tabs {
+            display: flex;
+            background: rgba(10, 13, 20, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px 16px;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active {
+            color: var(--oro);
+            border-bottom-color: var(--cempasuchil);
+            background: rgba(245, 130, 32, 0.08);
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: #fff;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .modal-body {
+            padding: 30px 35px;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 0.98rem;
+            line-height: 1.8;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: rgba(245, 130, 32, 0.4);
+            border-radius: 4px;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ELEMENTOS DENTRO DE LAS PESTAÑAS */
+        .symbol-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .symbol-item {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 3px solid var(--cempasuchil);
+        }
+
+        .symbol-item strong {
+            display: block;
+            color: var(--oro);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .etiqueta-respeto {
+            margin-top: 20px;
+            background: rgba(13, 95, 72, 0.2);
+            border: 1px solid var(--verde-agave);
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .etiqueta-respeto h4 {
+            color: #38ef7d;
+            margin-bottom: 6px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #06080d;
+            padding: 60px 8% 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        footer p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            header nav { display: none; }
+            .hero h1 { font-size: 2.4rem; }
+            section { padding: 60px 5%; }
+            .modal-card { max-height: 95vh; }
+            .modal-header { padding: 20px; }
+            .modal-body { padding: 20px; }
+            .cursor-glow, .cursor-dot { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CURSOR LUMINOSO INTERACTIVO -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">MÉXICO <span>VIVO</span></div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#tradiciones">Tradiciones</a></li>
+                <li><a href="#datos">Sabiduría</a></li>
+                <li>
+                    <button class="sound-btn" onclick="playChime(587.33)">
+                        <i class="fa-solid fa-bell"></i> Campana Ritual
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION CON CANVAS INTERACTIVO -->
+    <section id="inicio" class="hero">
+        <canvas id="petals-canvas"></canvas>
+        <div class="hero-content">
+            <div class="badge-flotante">
+                <i class="fa-solid fa-landmark"></i> Enciclopedia Viva y Memoria
+            </div>
+            <h1>EL LATIDO DE <br><span class="text-gradient">MÉXICO REAL</span></h1>
+            <p>Una investigación antropológica profunda sobre los ritos, la cosmología mesoamericana, el sincretismo y la comunalidad que forman la identidad viva de México.</p>
+            <a href="#tradiciones" class="btn-interactivo">
+                <span>Explorar Investigaciones</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- GUIRNALDA ANIMADA DE PAPEL PICADO -->
+    <div class="papel-picado-wrapper">
+        <svg class="papel-item" viewBox="0 0 100 80" fill="#E4007C"><polygon points="0,0 100,0 100,70 50,80 0,70"/><circle cx="50" cy="35" r="10" fill="#090C12"/><circle cx="25" cy="45" r="5" fill="#090C12"/><circle cx="75" cy="45" r="5" fill="#090C12"/></svg>
+        <svg class="papel-item" viewBox="0 0 100 80" fill="#F58220"><polygon points="0,0 100,0 100,70 50,80 0,70"/><circle cx="50" cy="35" r="10" fill="#090C12"/><circle cx="25" cy="45" r="5" fill="#090C12"/><circle cx="75" cy="45" r="5" fill="#090C12"/></svg>
+        <svg class="papel-item" viewBox="0 0 100 80" fill="#FFD166"><polygon points="0,0 100,0 100,70 50,80 0,70"/><circle cx="50" cy="35" r="10" fill="#090C12"/><circle cx="25" cy="45" r="5" fill="#090C12"/><circle cx="75" cy="45" r="5" fill="#090C12"/></svg>
+        <svg class="papel-item" viewBox="0 0 100 80" fill="#0D5F48"><polygon points="0,0 100,0 100,70 50,80 0,70"/><circle cx="50" cy="35" r="10" fill="#090C12"/><circle cx="25" cy="45" r="5" fill="#090C12"/><circle cx="75" cy="45" r="5" fill="#090C12"/></svg>
+        <svg class="papel-item" viewBox="0 0 100 80" fill="#E4007C"><polygon points="0,0 100,0 100,70 50,80 0,70"/><circle cx="50" cy="35" r="10" fill="#090C12"/><circle cx="25" cy="45" r="5" fill="#090C12"/><circle cx="75" cy="45" r="5" fill="#090C12"/></svg>
+        <svg class="papel-item" viewBox="0 0 100 80" fill="#F58220"><polygon points="0,0 100,0 100,70 50,80 0,70"/><circle cx="50" cy="35" r="10" fill="#090C12"/><circle cx="25" cy="45" r="5" fill="#090C12"/><circle cx="75" cy="45" r="5" fill="#090C12"/></svg>
+    </div>
+
+    <!-- SECCIÓN TRADICIONES -->
+    <section id="tradiciones">
+        <div class="section-title reveal">
+            <h2>PATRIMONIO INMATERIAL</h2>
+            <p>Haz clic en <strong>"Explorar Tradición"</strong> para abrir el expediente completo con historia, rito, simbología y guías de visita ética.</p>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="filtros-container reveal">
+            <button class="filtro-btn active" onclick="filtrarCards('todos', this)">Todas</button>
+            <button class="filtro-btn" onclick="filtrarCards('ritos', this)">Ritos Sagrados</button>
+            <button class="filtro-btn" onclick="filtrarCards('musica', this)">Música y Fandango</button>
+            <button class="filtro-btn" onclick="filtrarCards('sabor', this)">Sabiduría de la Tierra</button>
+        </div>
+
+        <div class="tradiciones-grid">
+            <!-- Tarjeta 1: Día de Muertos -->
+            <div class="card-tilt reveal" data-categoria="ritos" data-id="muertos">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Día de Muertos">
+                    <span class="card-badge">UNESCO 2008</span>
+                </div>
+                <div class="card-info">
+                    <h3>Día de Muertos & Xantolo</h3>
+                    <p>El pacto anual de amor y memoria donde los vivos iluminan el sendero aromático para que las ánimas crucen el umbral del Mictlán.</p>
+                    <button class="card-btn" onclick="abrirInvestigacion('muertos')">
+                        <span>Explorar Tradición</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Voladores de Papantla -->
+            <div class="card-tilt reveal" data-categoria="ritos" data-id="voladores">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=600&q=80" alt="Voladores de Papantla">
+                    <span class="card-badge">UNESCO 2009</span>
+                </div>
+                <div class="card-info">
+                    <h3>Voladores de Papantla</h3>
+                    <p>La plegaria cósmica totonaca de fertilidad. Cinco hombres-pájaro tejen el aire en 52 giros sagrados en honor al sol y la lluvia.</p>
+                    <button class="card-btn" onclick="abrirInvestigacion('voladores')">
+                        <span>Explorar Tradición</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3: Guelaguetza -->
+            <div class="card-tilt reveal" data-categoria="musica" data-id="guelaguetza">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80" alt="Guelaguetza">
+                    <span class="card-badge">Herencia Comunal</span>
+                </div>
+                <div class="card-info">
+                    <h3>La Guelaguetza & Tequio</h3>
+                    <p>La fiesta de la hermandad indígena en Oaxaca: el don sagrado de ofrendar al vecino lo que la tierra y las manos cosecharon.</p>
+                    <button class="card-btn" onclick="abrirInvestigacion('guelaguetza')">
+                        <span>Explorar Tradición</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjeta 4: Cocina de Milpa -->
+            <div class="card-tilt reveal" data-categoria="sabor" data-id="cocina">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80" alt="Cocina Tradicional">
+                    <span class="card-badge">UNESCO 2010</span>
+                </div>
+                <div class="card-info">
+                    <h3>Cocina de Milpa & Nixtamal</h3>
+                    <p>El milagro alimentario mesoamericano: la alquimia de cocinar maíz con cal viva para nutrir civilizaciones enteras durante milenios.</p>
+                    <button class="card-btn" onclick="abrirInvestigacion('cocina')">
+                        <span>Explorar Tradición</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjeta 5: Mariachi y Sones -->
+            <div class="card-tilt reveal" data-categoria="musica" data-id="mariachi">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&w=600&q=80" alt="Mariachi tradicional">
+                    <span class="card-badge">UNESCO 2011</span>
+                </div>
+                <div class="card-info">
+                    <h3>Mariachi & Sones de Tarima</h3>
+                    <p>Más que un traje de gala: la expresión comunitaria campesina donde el zapateado percute la tierra como un tambor colectivo.</p>
+                    <button class="card-btn" onclick="abrirInvestigacion('mariachi')">
+                        <span>Explorar Tradición</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjeta 6: Cosmovisión Wixárika -->
+            <div class="card-tilt reveal" data-categoria="sabor" data-id="wixarika">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1568283661580-0a8b792e3a79?auto=format&fit=crop&w=600&q=80" alt="Arte Wixárika">
+                    <span class="card-badge">Patrimonio Sagrado</span>
+                </div>
+                <div class="card-info">
+                    <h3>Cosmovisión Wixárika (Huichol)</h3>
+                    <p>Pintar con chaquira y estambre no es adorno: es el rezo visual de la peregrinación a Wirikuta, guiada por el Venado Azul.</p>
+                    <button class="card-btn" onclick="abrirInvestigacion('wixarika')">
+                        <span>Explorar Tradición</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTADORES ANIMADOS -->
+        <div class="stats-wrapper reveal" id="datos">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="counter-value" data-target="68">0</div>
+                    <p>Agrupaciones lingüísticas originarias vivas en territorio nacional.</p>
+                </div>
+                <div class="stat-box">
+                    <div class="counter-value" data-target="12">0</div>
+                    <p>Tradiciones y técnicas reconocidas por la UNESCO como Patrimonio Inmaterial.</p>
+                </div>
+                <div class="stat-box">
+                    <div class="counter-value" data-target="35">0</div>
+                    <p>Sitios mundiales protegidos (históricos, arqueológicos y naturales).</p>
+                </div>
+                <div class="stat-box">
+                    <div class="counter-value" data-target="7000">0</div>
+                    <p>Años continuos de domesticación y cultivo del maíz en México.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENTANA MODAL FLOTANTE DE INVESTIGACIÓN PROFUNDA -->
+    <div class="modal-overlay" id="investigacionModal">
+        <div class="modal-card">
+            <button class="close-modal" onclick="cerrarModal()"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="modal-header">
+                <h3 id="mTitulo">Título</h3>
+                <div class="modal-badges">
+                    <span class="m-badge m-badge-unesco" id="mUnesco">UNESCO</span>
+                    <span class="m-badge m-badge-region" id="mRegion">Región</span>
+                </div>
+            </div>
+
+            <!-- NAVEGACIÓN POR PESTAÑAS DENTRO DEL MODAL -->
+            <div class="modal-tabs">
+                <button class="tab-btn active" onclick="cambiarTab('historia', this)"><i class="fa-solid fa-scroll"></i> Cosmovisión</button>
+                <button class="tab-btn" onclick="cambiarTab('ritual', this)"><i class="fa-solid fa-fire-flame-curved"></i> El Ritual</button>
+                <button class="tab-btn" onclick="cambiarTab('simbolos', this)"><i class="fa-solid fa-shapes"></i> Simbología</button>
+                <button class="tab-btn" onclick="cambiarTab('lugares', this)"><i class="fa-solid fa-location-dot"></i> Dónde Vivirlo</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Pestaña 1: Cosmovisión -->
+                <div id="tab-historia" class="tab-pane active">
+                    <div id="mHistoriaContenido">Cargando cosmovisión...</div>
+                </div>
+
+                <!-- Pestaña 2: El Ritual -->
+                <div id="tab-ritual" class="tab-pane">
+                    <div id="mRitualContenido">Cargando ritual...</div>
+                </div>
+
+                <!-- Pestaña 3: Simbología -->
+                <div id="tab-simbolos" class="tab-pane">
+                    <div id="mSimbolosContenido">Cargando símbolos...</div>
+                </div>
+
+                <!-- Pestaña 4: Dónde Vivirlo con Respeto -->
+                <div id="tab-lugares" class="tab-pane">
+                    <div id="mLugaresContenido">Cargando lugares...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Plataforma de Investigación y Difusión Cultural México Vivo. Resguardando el valor antropológico de nuestras raíces.</p>
+    </footer>
+
+    <!-- BASE DE DATOS CULTURAL Y MOTOR DE GRAPHIC MOTION -->
+    <script>
+        /* BASE DE DATOS DE INVESTIGACIÓN ANTROPOLÓGICA */
+        const INVESTIGACIONES = {
+            muertos: {
+                titulo: "Día de Muertos & Xantolo",
+                unesco: "Patrimonio Cultural Inmaterial (Inscrito en 2008)",
+                region: "Nacional (Focos en Michoacán, Oaxaca, Huasteca y CDMX)",
+                historia: `
+                    <p><strong>Raíces Prehispánicas:</strong> En la cosmovisión mexica y nahua, la muerte no implicaba un juicio moral de cielo o infierno, sino un destino determinado por <em>la forma de morir</em>. Quienes morían de causas naturales viajaban durante cuatro años atravesando los 9 niveles del <strong>Mictlán</strong> (el inframundo gobernado por Mictlantecuhtli y Mictecacíhuatl) ayudados por un perro <em>Xoloitzcuintle</em>.</p>
+                    <br>
+                    <p><strong>El Sincretismo Mestizo:</strong> En el siglo XVI, los misioneros hicieron coincidir las celebraciones mexicas dedicadas a los difuntos con la fiesta católica de Todos los Santos (1 de noviembre) y Fieles Difuntos (2 de noviembre). Lejos del duelo triste occidental, en México se concibe como un pacto anual de hospitalidad: la familia gasta sus mejores ahorros para preparar el banquete que deleitará espiritualmente a las almas que tienen permiso de regresar a su antiguo hogar.</p>
+                `,
+                ritual: `
+                    <p><strong>Preparación y Vigilia (Panteones y Casas):</strong></p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li><strong>28 de Octubre:</strong> Se enciende la primera veladora y se coloca flor blanca para las almas que fallecieron de forma trágica o violenta.</li>
+                        <li><strong>31 de Octubre:</strong> Se ofrenda a los niños y no nacidos (<em>los angelitos</em>), con dulces, juguetes de madera, calabaza en tacha y atole.</li>
+                        <li><strong>1 de Noviembre:</strong> Día de Todos los Santos; se sirve la comida fuerte: mole negro, pipián, tamales, café de olla y destilados.</li>
+                        <li><strong>La Noche de Velación (Janitzio / Mixquic):</strong> Las familias se mudan al cementerio con mantas, rezan, tocan pirekuas o música tradicional y velan junto a las tumbas cubiertas de pétalos hasta el amanecer.</li>
+                    </ul>
+                `,
+                simbolos: `
+                    <p>Los 4 elementos de la naturaleza están presentes en todo altar tradicional:</p>
+                    <div class="symbol-list">
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-fire"></i> Fuego (Ceras y Veladoras)</strong>
+                            Simboliza la luz, la fe y la esperanza. Su flama es la guía para que las almas no se pierdan en el camino.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-wind"></i> Viento (Papel Picado)</strong>
+                            El papel calado representa el aire y la fragilidad de la existencia. Cuando ondea, anuncia que el ánima ha llegado.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-water"></i> Agua (Jícara o Vaso)</strong>
+                            Satisface la sed del ánima tras su largo viaje desde el inframundo y simboliza la pureza del alma.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-earth-americas"></i> Tierra (Semillas y Pan)</strong>
+                            Representada por frutos, maíz y el <em>Pan de Muerto</em>: su forma circular representa el ciclo de la vida, y su bolita central el cráneo rodeado de las 4 canillas (huesos y rumbos cardinales).
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-seedling"></i> Flor de Cempasúchil</strong>
+                            Del náhuatl <em>Cempohualxochitl</em> (veinte flores). Su color encendido como el sol y su fuerte fragancia trazan un sendero que los difuntos pueden oler y ver.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-smog"></i> Copal e Incienso</strong>
+                            Resina vegetal sagrada quemada en sahumador de barro; limpia las malas energías para que el alma entre con paz.
+                        </div>
+                    </div>
+                `,
+                lugares: `
+                    <p><strong>Comunidades Guardianas:</strong></p>
+                    <p>• <strong>Pátzcuaro y Tzintzuntzan (Michoacán):</strong> El lago se llena de canoas purépechas con antorchas que navegan a Janitzio; las tumbas son tapices de flor dorada.</p>
+                    <p>• <strong>La Huasteca (Hidalgo, Veracruz, SLP):</strong> Celebrado como <em>Xantolo</em>, donde cuadrillas de enmascarados bailan para burlar a la muerte al son del huapango.</p>
+                    <p>• <strong>San Andrés Mixquic (CDMX):</strong> Se realiza la famosa <em>Alumbrada</em>, apagando las luces eléctricas para dejar solo miles de cirios encendidos.</p>
+                    <div class="etiqueta-respeto">
+                        <h4><i class="fa-solid fa-hand-holding-heart"></i> Código Ético de Visita</h4>
+                        No pises las tumbas, pide permiso a las familias antes de tomar fotografías a sus ofrendas íntimas y comprende que estás dentro del duelo amoroso y la fe comunal de una familia, no en una atracción escénica.
+                    </div>
+                `
+            },
+            voladores: {
+                titulo: "Ceremonia Ritual de los Voladores",
+                unesco: "Patrimonio Cultural Inmaterial (Inscrito en 2009)",
+                region: "Totonacapan (Veracruz y Puebla), extendido a Centroamérica",
+                historia: `
+                    <p><strong>Mito Fundacional:</strong> Hace cientos de años, una cruenta sequía amenazaba la supervivencia del pueblo Totonaca. Los sabios ancianos encomendaron a cinco jóvenes castos adentrarse en la selva para cortar el árbol más recto y alto, ofrendarlo a los dioses de la lluvia y volar como aves para clamar el rocío celestial.</p>
+                    <br>
+                    <p><strong>Cosmología Mesoamericana:</strong> El rito es un calendario vivo y un mapa del cosmos. Cuatro voladores representan los cuatro rumbos cardinales (Norte, Sur, Este, Oeste) y los cuatro elementos. El quinto elemento, en el centro vertical, es el <em>Caporal</em>, que conecta el inframundo con el cielo divino mediante notas de flauta de carrizo y tamboril.</p>
+                `,
+                ritual: `
+                    <p><strong>Fases del Rito Sagrado:</strong></p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li><strong>Corte y Arrastre del Árbol (Tsakat Kiwi):</strong> Se pide perdón al espíritu del árbol con rezos, tabaco y aguardiente antes de talarlo. Decenas de hombres lo transportan en hombros sin tocar el suelo.</li>
+                        <li><strong>Siembra del Palo:</strong> En el agujero donde se clava el tronco (de 18 a 30 metros de altura), se depositan ofrendas de aguardiente, incienso, flores y a veces un pavo vivo para aplacar a los espíritus de la tierra.</li>
+                        <li><strong>La Danza en la Cima:</strong> El Caporal baila descalzo sobre una pequeña manzana de madera (<em>tecomate</em>) de apenas 30 centímetros de diámetro sin red de protección, inclinándose ante cada dirección solar.</li>
+                        <li><strong>El Descenso Cósmico:</strong> Los 4 voladores se lanzan al vacío atados de la cintura con cuerdas de henequén. Cada uno da exactamente <strong>13 vueltas</strong> antes de tocar el suelo.</li>
+                    </ul>
+                `,
+                simbolos: `
+                    <div class="symbol-list">
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-calculator"></i> El Número 52 (Ciclo Solar)</strong>
+                            4 danzantes multiplicados por 13 vueltas suman <strong>52 giros</strong>. Esto representa el siglo mesoamericano (*Xiuhmolpilli*), el ciclo del Fuego Nuevo en el cual el sol renace.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-dove"></i> Plumaje y Traje Rojo</strong>
+                            El cono con espejos en la cabeza representa la luz solar. El tocado y los listones multicolores imitan las plumas del pájaro sagrado y el arcoíris que anuncia la lluvia.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-music"></i> Flauta y Tamboril Simultáneo</strong>
+                            El caporal toca ambos instrumentos a la vez con una sola mano. La flauta imita el canto de las aves que piden agua y el tambor es el pulso y trueno de la nube.
+                        </div>
+                    </div>
+                `,
+                lugares: `
+                    <p>• <strong>Papantla y El Tajín (Veracruz):</strong> Cuna indiscutible de la tradición totonaca. En el Centro de las Artes Indígenas (CAI), los niños estudian en la *Escuela de Voladores* para preservar la lengua totonaca y la devoción espiritual del vuelo.</p>
+                    <p>• <strong>Cuetzalan (Puebla):</strong> Variante en la sierra nahua donde se danza en el atrio parroquial con trajes tradicionales de impresionante colorido.</p>
+                    <div class="etiqueta-respeto">
+                        <h4><i class="fa-solid fa-shield-halved"></i> Preservación Ética</h4>
+                        El rito de los voladores no es una acrobacia ni un deporte extremo; es una plegaria sacerdotal. Reconocer a sus intérpretes como guardianes espirituales es vital para su continuidad.
+                    </div>
+                `
+            },
+            guelaguetza: {
+                titulo: "La Guelaguetza & Tequio",
+                unesco: "Patrimonio Cultural de los Pueblos Indígenas de Oaxaca",
+                region: "Las 8 Regiones de Oaxaca (Cerro del Fortín)",
+                historia: `
+                    <p><strong>Etimología y Raíz Prehispánica:</strong> La palabra <em>Guelaguetza</em> proviene del zapoteco <em>Guendalezaa</em>, que significa 'ofrenda, compartir o ayudar mutuamente'. Nació de los ritos a <strong>Centéotl</strong>, diosa mexica/zapoteca del maíz tierno, a quien se le rendían danzas en el cerro del <em>Daninayaaloani</em> (hoy Cerro del Fortín) pidiendo que las cosechas no faltaran.</p>
+                    <br>
+                    <p><strong>El Tequio como Base Social:</strong> La Guelaguetza no se concibe sin el <em>Tequio</em>: la costumbre comunitaria oaxaqueña donde hombres y mujeres trabajan gratuitamente para reparar caminos, escuelas o preparar fiestas de su pueblo. La solidaridad no es un deber; es el honor de pertenecer a la comunidad.</p>
+                `,
+                ritual: `
+                    <p><strong>La Fiesta de los Lunes del Cerro:</strong></p>
+                    <p>Se celebra los dos lunes siguientes al 16 de julio. Cada una de las 8 regiones presenta su máxima expresión dancística:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li><strong>Danza de la Pluma (Valles Centrales):</strong> Representación de la conquista con majestuosos penachos circulares de plumas de avestruz y espejos que brillan al compás del vals.</li>
+                        <li><strong>Flor de Piña (Cuenca del Papaloapan):</strong> Mujeres con huipiles bordados al telar de cintura que danzan con sincronía perfecta cargando una piña en el hombro.</li>
+                        <li><strong>Sones del Istmo de Tehuantepec:</strong> Las tehuanas desfilan con trajes de terciopelo bordados con hilos de seda dorada al compás de <em>La Sandunga</em>.</li>
+                        <li><strong>La Aventada de Ofrendas:</strong> Al concluir cada baile, los participantes lanzan hacia el público panes de yema, sombreros de palma, piñas, café, chocolate y cantaritos de barro.</li>
+                    </ul>
+                `,
+                simbolos: `
+                    <div class="symbol-list">
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-hand-holding-heart"></i> El Don de la Reciprocidad</strong>
+                            En Oaxaca, dar implica que en el futuro la comunidad te respaldará cuando tú lo necesites (mano vuelta). La fiesta celebra que nadie es rico por lo que acumula, sino por lo que comparte.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-shirt"></i> El Huipil como Códice Vivo</strong>
+                            Los huipiles bordados por las artesanas mazatecas, triquis, mixes y zapotecas no son vestidos casuales: sus figuras geométricas narran la historia de sus ríos, volcanes y linajes familiares.
+                        </div>
+                    </div>
+                `,
+                lugares: `
+                    <p>• <strong>Auditorio Guelaguetza (Ciudad de Oaxaca):</strong> Sede oficial masiva en las faldas del Cerro del Fortín.</p>
+                    <p>• <strong>Guelaguetza Popular y Magisterial:</strong> Celebrada de manera gratuita en campos deportivos por comunidades y colectivos que preservan el carácter no comercial del festejo.</p>
+                    <p>• <strong>Fiestas Patronales en Zaachila y Tlacolula:</strong> El mejor lugar para vivir la verdadera entrega de comida comunal, mole y mezcal servido en jícara.</p>
+                `
+            },
+            cocina: {
+                titulo: "Cocina Tradicional: Milpa y Nixtamalización",
+                unesco: "Patrimonio Cultural Inmaterial (Inscrito en 2010)",
+                region: "Nacional (Paradigma de Michoacán, Puebla, Oaxaca, Yucatán)",
+                historia: `
+                    <p><strong>Paradigma de la Humanidad:</strong> En 2010, la UNESCO inscribió a la Cocina Mexicana como patrimonio no por platos de restaurantes de lujo, sino por ser un <em>sistema cultural integral, milenario y colectivo</em> que abarca desde la siembra hasta el comal ritual.</p>
+                    <br>
+                    <p><strong>La Trilogía de la Milpa:</strong> El campesino mesoamericano descubrió un policultivo simbiótico único en el mundo:
+                    <br>• El <strong>Maíz</strong> crece alto y da soporte físico.
+                    <br>• El <strong>Frijol</strong> trepa por la caña de maíz y fija nitrógeno biológico en la tierra.
+                    <br>• La <strong>Calabaza</strong> extiende sus hojas anchas sobre el suelo, guardando la humedad y bloqueando la hierba mala.
+                    <br>• El <strong>Chile</strong> ahuyenta plagas con su capsaicina natural.</p>
+                `,
+                ritual: `
+                    <p><strong>La Nixtamalización: La Alquimia Mesoamericana:</strong></p>
+                    <p>Comer maíz crudo o simplemente hervido causa desnutrición severa (pelagra) porque sus proteínas están bloqueadas. Hace más de 3,500 años, los ancestros descubrieron que hervir el grano con <strong>cal viva (hidróxido de calcio) o ceniza volcánica</strong> desata una reacción química asombrosa:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Desprende el hollejo incomible del grano (*pericarpio*).</li>
+                        <li>Libera la <strong>Niacina (Vitamina B3)</strong> y aminoácidos esenciales.</li>
+                        <li>Multiplica el calcio asimilable hasta un 2,000%, permitiendo a civilizaciones enteras crecer sin consumir leche animal.</li>
+                        <li>Permite que la masa sea plástica y maleable para hacer tortillas, tlayudas, tamales y atoles.</li>
+                    </ul>
+                `,
+                simbolos: `
+                    <div class="symbol-list">
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-mortar-pestle"></i> El Metate y el Molcajete</strong>
+                            Tallados en basalto volcánico poroso. Moler en metate de rodillas es un acto de reverencia y cansancio sagrado que imprime minerales esenciales a la comida.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-pepper-hot"></i> El Mole y la Complejidad</strong>
+                            Un guiso que reúne más de 30 ingredientes: chiles pasilla y mulato, chocolate amargo, pepitas, plátano macho, clavo y canela; representa el mestizaje y la fiesta mayor.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-users"></i> Las Cocineras Tradicionales</strong>
+                            Matriarcas y maestras de la comunidad que transmiten de forma exclusivamente oral los secretos de los fogones comunales.
+                        </div>
+                    </div>
+                `,
+                lugares: `
+                    <p>• <strong>Meseta Purépecha (Michoacán):</strong> San Lorenzo, Pátzcuaro y Uruapan; prueba el churipo (caldo de res con chile rojo) y las corundas de masa cocidas en hoja verde de maíz.</p>
+                    <p>• <strong>Valles de Oaxaca:</strong> Mercados de Tlacolula y Ocotlán para probar mole negro, chapulines asados con limón y tejate (la bebida de los dioses a base de cacao, hueso de mamey y flor de cacao).</p>
+                `
+            },
+            mariachi: {
+                titulo: "Mariachi & Sones de Tarima",
+                unesco: "Patrimonio Cultural Inmaterial (Inscrito en 2011)",
+                region: "Jalisco, Michoacán, Nayarit, Colima, Veracruz y Huasteca",
+                historia: `
+                    <p><strong>Origen Mestizo Campesino:</strong> Lejos del mariachi moderno con trompetas y traje de gala bordado en plata popularizado por el cine en el siglo XX, el <em>Mariachi Tradicional</em> nació en los pueblos del occidente (Cocula, Tecalitlán) como un ensamble campesino acústico compuesto por violines, arpa de palo, vihuela y guitarrón mexicano, tocado con calzón de manta y huarache.</p>
+                    <br>
+                    <p><strong>El Zapateado como Instrumento:</strong> En el Son Jarocho (Veracruz) y los sones huastecos, el fandango se realiza alrededor de una tarima de madera. Los bailadores no solo bailan: sus tacones percuten la madera actuando como instrumento rítmico que dialoga con las cuerdas de las jaranas y requintos.</p>
+                `,
+                ritual: `
+                    <p><strong>La Fiesta del Fandango Comunitario:</strong></p>
+                    <p>A diferencia de un concierto formal, en un fandango tradicional no hay público pasivo. Toda la comunidad rodea la tarima; los versadores improvisan coplas y décimas espinelas rimadas en el momento sobre política, desamor o la belleza de los ríos, y cualquiera con jarana puede sumarse a la rueda musical durante toda la noche.</p>
+                `,
+                simbolos: `
+                    <div class="symbol-list">
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-guitar"></i> El Guitarrón Mexicano</strong>
+                            Instrumento inventado en México para reemplazar el contrabajo europeo. Sus cuerdas dobles de tripa o nylon otorgan el bajo redondo y potente que caracteriza al mariachi.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-horse"></i> El Traje de Charro</strong>
+                            Evolucionó del atuendo de faena de los hacendados y jinetes del campo jalisciense, convertido en símbolo de orgullo e identidad nacional mexicana en el mundo.
+                        </div>
+                    </div>
+                `,
+                lugares: `
+                    <p>• <strong>Tecalitlán y Cocula (Jalisco):</strong> Cuna histórica del son de mariachi tradicional.</p>
+                    <p>• <strong>Tlacotalpan (Veracruz):</strong> En las fiestas de la Candelaria (2 de febrero), miles de jaraneros se reúnen en patios coloniales para fandangos que duran 72 horas continuas.</p>
+                `
+            },
+            wixarika: {
+                titulo: "Cosmovisión Wixárika (Huichol)",
+                unesco: "Sitio Sagrado Natural de Wirikuta (Patrimonio en Protección)",
+                region: "Sierra Madre Occidental (Jalisco, Nayarit, Durango, Zacatecas, SLP)",
+                historia: `
+                    <p><strong>Pueblo Jamás Conquistado:</strong> Gracias a su enclave inaccesible en las barrancas de la Sierra Madre, el pueblo Wixárika mantuvo intacta su religión animista prehispánica, sin ceder ante la evangelización colonial. Para ellos, la tierra, el viento, el fuego y los animales son deidades vivas y parientes con quienes se dialoga.</p>
+                    <br>
+                    <p><strong>La Trinidad Sagrada:</strong> Todo el pensamiento wixárika gira en torno a tres elementos inseparables:
+                    <br>1. El <strong>Venado Azul (Kauyumari)</strong>: Hermano mayor y mensajero de los dioses.
+                    <br>2. El <strong>Maíz (Ikurí)</strong>: El sustento biológico de la familia.
+                    <br>3. El <strong>Peyote (Hikuri)</strong>: El cacto sagrado que permite al chamán ver el corazón del universo.</p>
+                `,
+                ritual: `
+                    <p><strong>La Peregrinación a Wirikuta:</strong></p>
+                    <p>Cada año, los chamanes (*mara'akame*) y las familias caminan más de 500 kilómetros desde la sierra de Jalisco hasta el desierto de Real de Catorce (San Luis Potosí), Wirikuta, el lugar sagrado donde según su mito nació el Sol (*Tatewari*). En el desierto cazan espiritualmente el peyote con flechas ceremoniales para recibir visiones y bendiciones para que llueva en el mundo entero.</p>
+                `,
+                simbolos: `
+                    <div class="symbol-list">
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-eye"></i> El Ojo de Dios (Tsitkuri)</strong>
+                            Tejido en cruz con rombos de estambre de colores. Se elabora para proteger a los niños; cada año de vida el padre teje un nuevo anillo hasta que el infante cumple 5 años.
+                        </div>
+                        <div class="symbol-item">
+                            <strong><i class="fa-solid fa-palette"></i> Las Tablas de Estambre (Nierika)</strong>
+                            Los artesanos pegan hilo de estambre sobre madera usando cera de abeja natural de Campeche. No son simples pinturas: son transcripciones directas de los cantos chamánicos y las visiones celestes.
+                        </div>
+                    </div>
+                `,
+                lugares: `
+                    <p>• <strong>Comunidades de San Andrés Cohamiata y Santa Catarina (Jalisco):</strong> Centros ceremoniales gobernados por ancianos y consejos de sabios.</p>
+                    <p>• <strong>Real de Catorce (San Luis Potosí):</strong> Acceso a Wirikuta; territorio amenazado por concesiones mineras que las comunidades defienden con dignidad legal y espiritual.</p>
+                    <div class="etiqueta-respeto">
+                        <h4><i class="fa-solid fa-mountain-sun"></i> Alerta Cultural</h4>
+                        El peyote es una planta medicinal sagrada protegida por la ley para uso exclusivo del pueblo wixárika en sus ritos milenarios. El turismo psicodélico no regulado daña gravemente su ecosistema y profana sus altares ancestrales.
+                    </div>
+                `
+            }
+        };
+
+        /* 1. CURSOR GLOW Y DOT */
+        const cursorGlow = document.getElementById('cursorGlow');
+        const cursorDot = document.getElementById('cursorDot');
+
+        window.addEventListener('mousemove', (e) => {
+            if (cursorGlow && cursorDot) {
+                cursorGlow.style.left = `${e.clientX}px`;
+                cursorGlow.style.top = `${e.clientY}px`;
+                cursorDot.style.left = `${e.clientX}px`;
+                cursorDot.style.top = `${e.clientY}px`;
+            }
+        });
+
+        /* 2. CANVAS: PÉTALOS DE CEMPASÚCHIL */
+        const canvas = document.getElementById('petals-canvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+        let mouseX = 0, mouseY = 0;
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        class Petal {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -80;
+                this.size = Math.random() * 8 + 5;
+                this.speedY = Math.random() * 1.5 + 0.8;
+                this.speedX = Math.random() * 1.4 - 0.7;
+                this.rotation = Math.random() * 360;
+                this.rotSpeed = (Math.random() - 0.5) * 2;
+                this.color = Math.random() > 0.4 ? '#F58220' : '#FFD166';
+                this.opacity = Math.random() * 0.6 + 0.4;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotSpeed;
+
+                let dx = mouseX - this.x;
+                let dy = mouseY - this.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    this.x -= (dx / dist) * 2;
+                }
+                if (this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) petals.push(new Petal());
+
+        function loopPetals() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(loopPetals);
+        }
+        loopPetals();
+
+        /* 3. EFECTO 3D TILT EN TARJETAS */
+        const cards = document.querySelectorAll('.card-tilt');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height/2) / (rect.height/2)) * -9;
+                const rotateY = ((x - rect.width/2) / (rect.width/2)) * 9;
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0)';
+            });
+        });
+
+        /* 4. SCROLL REVEAL Y CONTADORES */
+        const reveals = document.querySelectorAll('.reveal');
+        let countersRan = false;
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.id === 'datos' && !countersRan) {
+                        countersRan = true;
+                        document.querySelectorAll('.counter-value').forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            let count = 0;
+                            const step = target / 50;
+                            function updateCounter() {
+                                count += step;
+                                if (count < target) {
+                                    counter.innerText = Math.ceil(count).toLocaleString();
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    counter.innerText = target.toLocaleString();
+                                }
+                            }
+                            updateCounter();
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => scrollObserver.observe(r));
+
+        /* 5. FILTRADO DE TARJETAS */
+        function filtrarCards(categoria, btn) {
+            document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            cards.forEach(card => {
+                if (categoria === 'todos' || card.getAttribute('data-categoria') === categoria) {
+                    card.style.display = 'flex';
+                    setTimeout(() => card.style.opacity = '1', 40);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+
+        /* 6. MODAL INTERACTIVO DE INVESTIGACIÓN PROFUNDA */
+        const modal = document.getElementById('investigacionModal');
+
+        function abrirInvestigacion(id) {
+            const data = INVESTIGACIONES[id];
+            if (!data) return;
+
+            document.getElementById('mTitulo').innerText = data.titulo;
+            document.getElementById('mUnesco').innerText = data.unesco;
+            document.getElementById('mRegion').innerText = data.region;
+
+            document.getElementById('mHistoriaContenido').innerHTML = data.historia;
+            document.getElementById('mRitualContenido').innerHTML = data.ritual;
+            document.getElementById('mSimbolosContenido').innerHTML = data.simbolos;
+            document.getElementById('mLugaresContenido').innerHTML = data.lugares;
+
+            // Resetear a la primera pestaña
+            cambiarTab('historia', document.querySelector('.modal-tabs .tab-btn:first-child'));
+
+            modal.classList.add('active');
+            playChime(659.25); // Sonido Mi agudo armónico
+        }
+
+        function cambiarTab(tabKey, btn) {
+            document.querySelectorAll('.modal-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById(`tab-${tabKey}`).classList.add('active');
+            playChime(880, 0.05); // Sonido sutil de clic de pestaña
+        }
+
+        function cerrarModal() {
+            modal.classList.remove('active');
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) cerrarModal();
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') cerrarModal();
+        });
+
+        /* 7. WEB AUDIO API (CAMPANA PENTATÓNICA NATIVA) */
+        let audioCtx;
+        function playChime(freq = 523.25, duration = 1.2) {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+    </script>
+</body>
+</html>
